@@ -20,13 +20,13 @@ def is_nested(line):
         token = line[0]
         if line[:2] == '(*':
             token = '(*'
-        elif line[:2] == '*)':
+        if line[:2] == '*)':
             token = '*)'
         count += 1
 
         if token in openers:
             stack.append(token)
-        elif token in closers:
+        if token in closers:
             i = closers.index(token)
             matching_opener = openers[i]
             if stack and stack.pop() != matching_opener:
@@ -40,9 +40,11 @@ def is_nested(line):
 
 
 def main(args):
+    # print(args)
     with open(args[1]) as f:
         text_list = f.read().split('\n')
     print(text_list)
+    # text_list = open(args[1]).read().split('\n')
 
     with open('output.txt', 'w') as f:
 
@@ -58,4 +60,38 @@ def main(args):
 
 
 if __name__ == '__main__':
-    main(sys.argv)
+
+main(sys.argv)
+# import sys
+
+
+# def main(args):
+#     left = "({["  # opening delimiters
+#     right = ")}]"  # respective closing delims
+#     S = []
+#     for i in args:
+#         if i in left:
+#             S.append(i)  # push left delimiter on stack
+#         elif i in right:
+#             if not S:
+#                 return False  # nothing to match with
+#             if right.index(i) != left.index(S.pop()):
+#                 return False  # mismatched
+#     if not S:
+#         return True
+#     else:
+#         return False
+
+
+# num_cases = int(input())
+# while num_cases:
+#     # input_text = raw_input()
+#     if (main(raw_input()) == True):
+#         print("YES")
+#     else:
+#         print("NO")
+#     num_cases = num_cases - 1
+
+
+# if __name__ == '__main__':
+#     main(sys.argv)

@@ -20,13 +20,13 @@ def is_nested(line):
         token = line[0]
         if line[:2] == '(*':
             token = '(*'
-        elif line[:2] == '*)':
+        if line[:2] == '*)':
             token = '*)'
         count += 1
 
         if token in openers:
             stack.append(token)
-        elif token in closers:
+        if token in closers:
             i = closers.index(token)
             matching_opener = openers[i]
             if stack and stack.pop() != matching_opener:
@@ -40,14 +40,16 @@ def is_nested(line):
 
 
 def main(args):
+    # print(args)
     with open(args[1]) as f:
         text_list = f.read().split('\n')
     print(text_list)
+    # text_list = open(args[1]).read().split('\n')
 
     with open('output.txt', 'w') as f:
 
-        for i in text_list:
-            result = is_nested(i)
+        for x in text_list:
+            result = is_nested(x)
             if result > 0:
                 f.write("NO {} \n".format(result))
                 print("NO {}".format(result))
