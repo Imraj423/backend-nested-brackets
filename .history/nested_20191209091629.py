@@ -35,7 +35,6 @@ def is_nested(line):
         line = line[len(token):]
 
     if stack:
-        count += 1
         return count
     return 0
 

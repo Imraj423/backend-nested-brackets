@@ -35,7 +35,7 @@ def is_nested(line):
         line = line[len(token):]
 
     if stack:
-        count += 1
+        count =+ 1
         return count
     return 0
 
@@ -56,6 +56,7 @@ def main(args):
             else:
                 print("YES")
                 f.write("YES \n")
+
 
 
 if __name__ == '__main__':
